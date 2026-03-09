@@ -7,7 +7,7 @@ const app = express();
 const router = express.Router();
 
 router.use((req, res, next) => {
-  console.log("Time:", new Date(Date.now()).toString());
+  console.log("Time:", new Date().toString());
   next();
 });
 
@@ -40,7 +40,13 @@ router.get("/user/:id", (req, res, next) => {
   res.send("Hello Admin");
 });
 
-app.use("/", router);
+app.use("/corporate", router);
+
+app.use("/", (req, res, next) => {
+  res.send(
+    "Hello Welcome to Corporate World. Please enter the corporate url to begin!",
+  );
+});
 
 app.listen(port, () => {
   console.log(`Server Started at: http://localhost:${port}`);
